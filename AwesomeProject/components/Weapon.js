@@ -1,39 +1,37 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
-import { Card } from 'react-native-elements';
+import { Card, Button } from 'react-native-elements';
+import { connect } from 'react-redux';
+import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
 
-export default class Weapon extends React.Component {
+let radio_props = [
+    { label: <Image style={{ width: 50, height: 50 }} source={{ uri: 'https://s15.postimg.cc/wnhtbp4wr/Sword.png' }} />, value: 'Cleric' },
+        { label: <Image style={{ width: 50, height: 50 }} source={{ uri: 'https://s15.postimg.cc/bzj5x0h4b/Mace.png' }} />, value: 'Knight' },
+        { label: <Image style={{ width: 50, height: 50 }} source={{ uri: 'https://s15.postimg.cc/c5wv0dl6z/Axe.png' }} />, value: 'Bard' }
+    ];
 
-    render() {
-        return (
+export function Weapon(props) {
+    return (
 
-            <View title="Weapon" style={styles.container}>
-            <Card title="Weapon">
-                <Text style={{ color: 'white', fontWeight: 'bold' }}>Weapon</Text>
-
-                <TouchableOpacity style={styles.button} onPress={() => { alert("you chose sword") }}>
-                    <Image style={{ width: 50, height: 50 }} source={{ uri: 'https://s15.postimg.cc/wnhtbp4wr/Sword.png' }} />
-                    <Text style={{ color: 'white', fontWeight: 'bold' }}>Sword</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={() => { alert("you chose mace") }}>
-                    <Image style={{ width: 50, height: 50 }} source={{ uri: 'https://s15.postimg.cc/bzj5x0h4b/Mace.png' }} />
-                    <Text style={{ color: 'white', fontWeight: 'bold' }}>Mace</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={() => { alert("you chose axe") }}>
-                    <Image style={{ width: 50, height: 50 }} source={{ uri: 'https://s15.postimg.cc/c5wv0dl6z/Axe.png' }} />
-                    <Text style={{ color: 'white', fontWeight: 'bold' }}>Axe</Text>
-                </TouchableOpacity>
+        <Card title="Weapon" style={styles.container}>
+                <RadioForm formHorizontal={false}
+                    radio_props={radio_props}
+                    initial={null}
+                    labelHorizontal={true}
+                    onPress={(e) => { props.onPress(e) }} />
+                <Card style={styles.container}>
+                    <Text>{props.weapon}</Text>
                 </Card>
-            </View>
-        )
-    }
+        </Card>
+
+    )
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#595454',
-        alignItems: 'center',
+        alignItems: 'stretch',
         justifyContent: 'center'
     },
     button: {
@@ -42,6 +40,15 @@ const styles = StyleSheet.create({
         padding: 10,
         marginBottom: 20
     },
+    text: {
+        fontWeight: 'bold',
+        color: 'black'
+    }
 });
 
 
+const mapStateToProps = (state) => ({
+    weapon: state.weapon
+});
+
+export default connect(mapStateToProps)(Weapon);

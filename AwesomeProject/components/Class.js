@@ -1,38 +1,36 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
-import { Card } from 'react-native-elements';
+import { Card, Button } from 'react-native-elements';
+import { connect } from 'react-redux';
+import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
 
-export default class Class extends React.Component {
+let radio_props = [
+    { label: <Image style={{ width: 50, height: 50 }} source={{ uri: 'https://s15.postimg.cc/kn5k2scd7/Cross_1.png' }} />, value: 'Cleric' },
+        { label: <Image style={{ width: 50, height: 50 }} source={{ uri: 'https://s15.postimg.cc/nd5p8gca3/Helmet.png' }} />, value: 'Knight' },
+        { label: <Image style={{ width: 50, height: 50 }} source={{ uri: 'https://s15.postimg.cc/3qbvw8a63/Harp.png' }} />, value: 'Bard' }
+    ];
 
-    render() {
-        return (
+export function Class(props) {
+    return (
 
-            <View title="Class" style={styles.container}>
-            <Card title="Class">
-                <Text style={{color: 'white', fontWeight: 'bold'}}>Class</Text>
-                <TouchableOpacity style={styles.button} onPress={() => { alert("you chose cleric") }}>
-                    <Image style={{ width: 50, height: 50 }} source={{ uri: 'https://s15.postimg.cc/kn5k2scd7/Cross_1.png' }} />
-                    <Text style={{color: 'white', fontWeight: 'bold'}}>Cleric</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={() => { alert("you chose knight") }}>
-                <Image style={{ width: 50, height: 50 }} source={{ uri: 'https://s15.postimg.cc/nd5p8gca3/Helmet.png' }} />
-                <Text style={{color: 'white', fontWeight: 'bold'}}>Knight</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={() => { alert("you chose bard") }}>
-                <Image style={{ width: 50, height: 50 }} source={{ uri: 'https://s15.postimg.cc/3qbvw8a63/Harp.png' }} />
-                <Text style={{color: 'white', fontWeight: 'bold'}}>Bard</Text>
-                </TouchableOpacity>
+        <Card title="Class" style={styles.container}>
+                <RadioForm formHorizontal={false}
+                    radio_props={radio_props}
+                    initial={null}
+                    labelHorizontal={true}
+                    onPress={(e) => { props.onPress(e) }} />
+                <Card style={styles.container}>
+                    <Text>{props.class}</Text>
                 </Card>
-            </View>
-        )
-    }
+        </Card>
+    )
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#595454',
-        alignItems: 'center',
+        alignItems: 'stretch',
         justifyContent: 'center',
     },
     button: {
@@ -41,6 +39,14 @@ const styles = StyleSheet.create({
         padding: 10,
         marginBottom: 20
     },
+    text: {
+        fontWeight: 'bold',
+        color: 'black'
+    }
 });
 
+const mapStateToProps = (state) => ({
+    classification: state.classification
+});
 
+export default connect(mapStateToProps)(Class);

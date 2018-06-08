@@ -3,6 +3,8 @@ import { Button, View, Text, ScrollView } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import Builder from './components/Builder';
 import Login from './components/Login';
+import { Provider } from 'react-redux';
+import store from './store';
 
 class HomeScreen extends React.Component {
   render() {
@@ -11,7 +13,7 @@ class HomeScreen extends React.Component {
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Login />
         <Button
-          title="Login"
+          title="Builder"
           onPress={() => {
             this.props.navigation.navigate('Builder', {
               itemId: 86,
@@ -31,10 +33,7 @@ class BuilderScreen extends React.Component {
     return (
       <ScrollView>
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Button
-          title="Go to Home"
-          onPress={() => this.props.navigation.navigate('Home')}
-        />
+        
         <Builder />
       </View>
       </ScrollView>
@@ -54,6 +53,8 @@ const RootStack = createStackNavigator(
 
 export default class App extends React.Component {
   render() {
-    return <RootStack />;
+    return <Provider store={store}>
+      <RootStack />
+      </Provider>;
   }
 }
