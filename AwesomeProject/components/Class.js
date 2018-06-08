@@ -18,9 +18,9 @@ export function Class(props) {
                     radio_props={radio_props}
                     initial={null}
                     labelHorizontal={true}
-                    onPress={(e) => { props.onPress(e) }} />
+                    onPress={(value) => { props.onPress(value) }} />
                 <Card style={styles.container}>
-                    <Text>{props.class}</Text>
+                    <Text>{props.classification}</Text>
                 </Card>
         </Card>
     )

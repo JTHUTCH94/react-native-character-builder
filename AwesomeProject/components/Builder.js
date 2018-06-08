@@ -15,9 +15,9 @@ export class Builder extends React.Component {
         return (
             <Card style={styles.container} >
                 <Name onInput={e => this.props.dispatch(setName(e.target.value))}/>
-                <Race onPress={e =>  this.props.dispatch(setRace(e.target.value))}/>
-                <Class onPress={e => this.props.dispatch(setClassification(e.target.value))}/>
-                <Weapon onPress={e => this.props.dispatch(setWeapon(e.target.value))}/>
+                <Race onPress={value => this.props.dispatch(setRace(value))}/>
+                <Class onPress={value => this.props.dispatch(setClassification(value))}/>
+                <Weapon onPress={value => this.props.dispatch(setWeapon(value))}/>
                 <Button style={styles.container} title="submit" value="Submit"  onPress={(e) => { e.preventDefault();this.props.dispatch(createCharacterAction(e)) }}/>
             </Card>
         );

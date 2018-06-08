@@ -11,7 +11,6 @@ let radio_props = [
 ];
 
 export function Race(props) {
-    console.log(props.race);
     return (
 
         <Card title="Race" style={styles.container}>
@@ -19,7 +18,7 @@ export function Race(props) {
                     radio_props={radio_props}
                     initial={null}
                     labelHorizontal={true}
-                    onPress={(e) => { props.onPress(e) }} />
+                    onPress={(value) => { props.onPress(value) }} />
                 <Card style={styles.container}>
                     <Text>{props.race}</Text>
                 </Card>

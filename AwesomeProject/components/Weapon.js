@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
 
 let radio_props = [
-    { label: <Image style={{ width: 50, height: 50 }} source={{ uri: 'https://s15.postimg.cc/wnhtbp4wr/Sword.png' }} />, value: 'Cleric' },
-        { label: <Image style={{ width: 50, height: 50 }} source={{ uri: 'https://s15.postimg.cc/bzj5x0h4b/Mace.png' }} />, value: 'Knight' },
-        { label: <Image style={{ width: 50, height: 50 }} source={{ uri: 'https://s15.postimg.cc/c5wv0dl6z/Axe.png' }} />, value: 'Bard' }
+    { label: <Image style={{ width: 50, height: 50 }} source={{ uri: 'https://s15.postimg.cc/wnhtbp4wr/Sword.png' }} />, value: 'Sword' },
+        { label: <Image style={{ width: 50, height: 50 }} source={{ uri: 'https://s15.postimg.cc/bzj5x0h4b/Mace.png' }} />, value: 'Mace' },
+        { label: <Image style={{ width: 50, height: 50 }} source={{ uri: 'https://s15.postimg.cc/c5wv0dl6z/Axe.png' }} />, value: 'Axe' }
     ];
 
 export function Weapon(props) {
@@ -18,7 +18,7 @@ export function Weapon(props) {
                     radio_props={radio_props}
                     initial={null}
                     labelHorizontal={true}
-                    onPress={(e) => { props.onPress(e) }} />
+                    onPress={(value) => { props.onPress(value) }} />
                 <Card style={styles.container}>
                     <Text>{props.weapon}</Text>
                 </Card>
